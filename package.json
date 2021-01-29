@@ -1,0 +1,19 @@
+{
+  "name": "vef2-2021-v1",
+  "version": "1.0.0",
+  "description": "Vefforritun 2 verkefni 1",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonAlex99/Vefforritun-2-verkefni-1.git"
+  },
+  "author": "Jón Alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonAlex99/Vefforritun-2-verkefni-1/issues"
+  },
+  "homepage": "https://github.com/JonAlex99/Vefforritun-2-verkefni-1#readme"
+}
