@@ -1,0 +1,36 @@
+<%- include('header') -%>
+
+  <main>
+    <% categories.forEach((category)=> { %>
+      <div class="grid">
+        <h2 class="video_category">
+          <%= category.title %>
+        </h2>
+        <div class="row">
+          <% category.videos.forEach((video)=> { %>
+            <div class="col col-4 col-md-12 col-sm-12">
+              <a class="video" href="<%= video.id %>">
+                <div class="video__spil">
+                  <img class="video__img" src="<%= video.poster %>" alt="">
+                  <div class="video__duration">
+                    <%=getDuration(video.duration)%>
+                  </div>
+                </div>
+                <div class="video_content">
+                  <h3 class="video_title">
+                    <%= video.title %>
+                  </h3>
+                  <p class="video_age">
+                    <%=getAge(video.created)%>
+                  </p>
+                </div>
+              </a>
+            </div>
+            <% }) %>
+        </div>
+        <hr>
+      </div>
+      <% }) %>
+  </main>
+
+  <%- include('footer') -%>

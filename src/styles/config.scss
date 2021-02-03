@@ -1,0 +1,13 @@
+$gutter: 30px;
+$columns: 12;
+
+$breakpoints: (
+  'sm': 499px,
+  'md': 799px,
+);
+
+@mixin media($breakpoint) {
+  @media (max-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}

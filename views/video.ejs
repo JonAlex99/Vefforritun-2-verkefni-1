@@ -1,0 +1,23 @@
+<%- include('header') -%>
+
+  <main>
+    <div class="grid">
+      <div class="row">
+        <div class="col col-12">
+          <div class="player">
+            <div class="player__container">
+              <div class="player__video-wrapper">
+                  <video class ="player__video" controls>
+                    <source src="<%= video %>" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <a class="back" href="./">Til baka</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+<%- include('footer') -%>
