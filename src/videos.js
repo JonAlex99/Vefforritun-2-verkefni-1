@@ -2,42 +2,42 @@ import express from 'express';
 import fs from 'fs';
 import util from 'util';
 
+// eslint-disable-next-line import/prefer-default-export
 export const router = express.Router();
 const readFileAsync = util.promisify(fs.readFile);
 
-function catchErrors(e){
-  return(req, res, next) => e(req, res, next).catch(next);
+function catchErrors(e) {
+  return (req, res, next) => e(req, res, next).catch(next);
 }
 
-
-//Verður að senda parsa yfir í Json
-async function getJson() { //Importa FS pakka til að fá þetta til að virka
+// Verður að senda parsa yfir í Json
+async function getJson() { // Importa FS pakka til að fá þetta til að virka
   const file = await readFileAsync('./videos.json');
   const json = JSON.parse(file);
   return json;
 }
 
-//kallar á getJson
-async function index(req, res) { //main.ejs
+// kallar á getJson
+async function index(req, res) { // main.ejs
   const title = 'Fræðslumyndbandaleigan';
   const json = await getJson();
-  const{videos, categories} = json;
-  categories.forEach(c => {
+  const { videos, categories } = json;
+  categories.forEach((c) => {
     let i = 0;
-    c.videos.forEach(vid => {
-      c.videos[i++] = videos[vid - 1];
+    c.videos.forEach((vid) => {
+      c.videos[i++] = videos[vid - 1]; // eslint-disable-line
     });
   });
 
-  res.render('main', {title, categories});
+  res.render('main', { title, categories });
 }
 
-//kallar a getJson
-async function videos(req,res,next) {
-  const{id} = req.params;
+// kallar a getJson
+async function getVideos(req, res, next) {
+  const { id } = req.params;
 
   const json = await getJson();
-  const{videos} = json;
+  const { videos } = json;
 
   const erMyndbandTil = videos.find((a) => a.id === parseInt(id, 10));
 
@@ -45,12 +45,11 @@ async function videos(req,res,next) {
     return next();
   }
 
-  const{title, video} = erMyndbandTil;
+  const { title, video } = erMyndbandTil;
 
-  return res.render('video', {title, video})
-
+  return res.render('video', { title, video });
 }
 
 router.get('/', catchErrors(index));
 
-router.get('/:id', catchErrors(videos));
+router.get('/:id', catchErrors(getVideos));
